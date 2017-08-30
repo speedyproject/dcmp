@@ -27,7 +27,7 @@ hs_err_pid*
 .idea/
 .vscode
 
-.iml
+*.iml
 
 /target/
 target/
