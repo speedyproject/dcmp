@@ -4,4 +4,4 @@ jdk:
   - oraclejdk8
   
 install:
-  - ./build.sh
+  - sudo ./build.sh
