@@ -1,20 +1,14 @@
 language: java
 
 sudo: false
-env:
-  global:
-    - CONSUL_VERSION=0.9.2
-    - CONSUL_DC=dev1
-    - CONSUL_DIR=$HOME/consul_$CONSUL_VERSION
+
 before_script:
-  - 'if [[ ! -f $CONSUL_DIR/consul ]]; then (mkdir -p $CONSUL_DIR && cd $CONSUL_DIR && wget https://releases.hashicorp.com/consul/0.9.2/consul_$(CONSUL_VERSION)_linux_amd64.zip && unzip ${CONSUL_VERSION}_linux_amd64.zip); fi'
-  - $CONSUL_DIR/consul --version
-  - $CONSUL_DIR/consul agent -dev &
-  # Wait for consul to elect itself as leader
+  - wget 'wget https://releases.hashicorp.com/consul/0.9.2/consul_0.9.2_linux_amd64.zip?_ga=2.171315744.1078551265.1504110649-551520754.1504110649'
+  - mv "consul_0.9.2_linux_amd64.zip?_ga=2.171315744.1078551265.1504110649-551520754.1504110649 consul_0.9.2_linux_amd64.zip"
+  - unzip "consul_0.9.2_linux_amd64.zip"
+  - ./consul --version
+  - ./consul agent -dev
   - sleep 5
-cache:
-  directories:
-    - $CONSUL_DIR
   
 jdk:
   - oraclejdk8
