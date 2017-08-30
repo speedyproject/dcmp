@@ -1,0 +1,15 @@
+config:
+  profile: dev
+  token: er34xfwefwerqxrx2
+  consul:
+    host: localhost:8500
+    ttl: 3
+    port: 8080
+    check: http://localhost:8080/health
+    serviceId: config-web
+    serviceName: config-web
+  repo:
+    repoDir: /Users/nico/Documents/develop/workspace-idea/config-web/src/main/resources/repertory
+    host: https://github.com/gksqls/config-repo
+    username: gksqlsdy@gmail.com
+    password: z199716!
