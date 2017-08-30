@@ -10,6 +10,6 @@ config:
     serviceName: config-web
   repo:
     repoDir: /tmp/repertory
-    host: 
+    host: https://github.com/gksqls/config-repo
     username: 
     password: 
