@@ -1,6 +1,6 @@
 package org.nicosoft.config.support.repertory.impl;
 
-import org.apache.commons.lang3.StringUtils;
+//import org.apache.commons.lang3.StringUtils;
 import org.eclipse.jgit.api.CloneCommand;
 import org.eclipse.jgit.api.Git;
 import org.eclipse.jgit.api.PullCommand;
@@ -38,13 +38,13 @@ public class RepertoryServiceImpl implements RepertoryService {
             command.setURI(config.getRepo("host"));
             command.setDirectory(repoDir);
 
-            String user = config.getRepo("username");
-            String passwd = config.getRepo("password");
+            //String user = config.getRepo("username");
+            //String passwd = config.getRepo("password");
 
-            if(StringUtils.isNotBlank(user) && StringUtils.isNotBlank(passwd)) {
-                UsernamePasswordCredentialsProvider upcp = new UsernamePasswordCredentialsProvider(user, passwd);
-                command.setCredentialsProvider(upcp);
-            }
+            //if(StringUtils.isNotBlank(user) && StringUtils.isNotBlank(passwd)) {
+                //UsernamePasswordCredentialsProvider upcp = new UsernamePasswordCredentialsProvider(user, passwd);
+                //command.setCredentialsProvider(upcp);
+            //}
 
             command.call();
 
