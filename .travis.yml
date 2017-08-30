@@ -1,7 +1,10 @@
 language: java
 
+sudo:
+  true
+  
 jdk:
   - oraclejdk8
   
 install:
-  - echo "success"
+  - cd config-web/ && mvn clean -DskipTests=true -Dmaven.javadoc.skip=true -B -V
