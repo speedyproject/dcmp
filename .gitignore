@@ -34,3 +34,4 @@ target/
 
 /config-web/src/main/resources/config.yml
 **/config.yml
+config.yml
