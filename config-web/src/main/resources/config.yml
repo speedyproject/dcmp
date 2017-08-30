@@ -9,7 +9,7 @@ config:
     serviceId: config-web
     serviceName: config-web
   repo:
-    repoDir: /tmp/repertory
+    repoDir: /home/travis/build/speedyproject/dcmp/repertory
     host: https://github.com/gksqls/config-repo
     username: 
     password: 
