@@ -14,4 +14,5 @@ jdk:
   - oraclejdk8
   
 install:
+  - pwd
   - cd config-web/ && mvn clean package -DskipTests=true -Dmaven.javadoc.skip=true -B -V
