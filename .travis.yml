@@ -4,4 +4,4 @@ jdk:
   - oraclejdk8
   
 install:
-  - cd config-web/ && mvn clean -Dmaven.test.skip=true
+  - echo "success"
