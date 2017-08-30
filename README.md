@@ -21,6 +21,6 @@
 
 ## 联系与建议
 
-*	E-mail: nico.jiang@outlook.com gksqlsdy@gmail.com
+*	E-mail: gksqlsdy@gmail.com
 
 
