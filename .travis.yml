@@ -4,4 +4,4 @@ jdk:
   - oraclejdk8
   
 install:
-  - sudo ./build.sh
+  - cd config-web/ && mvn clean package
