@@ -1,5 +1,6 @@
 package org.nicosoft.config.support.repertory.impl;
 
+import org.apache.commons.lang3.StringUtils;
 import org.eclipse.jgit.api.CloneCommand;
 import org.eclipse.jgit.api.Git;
 import org.eclipse.jgit.api.PullCommand;
