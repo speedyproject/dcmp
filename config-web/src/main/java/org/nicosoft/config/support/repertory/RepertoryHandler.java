@@ -156,17 +156,15 @@ public class RepertoryHandler {
             Map<String, Properties> propertiesMap = this.loadProperties();
             keySet = new HashSet<>();
 
-            if (propertiesMap != null && propertiesMap.size() > 0) {
-                Set<String> ketSet = propertiesMap.keySet();
-                for (String key : ketSet) {
-                    Properties properties = propertiesMap.get(key);
-                    Set<Object> propertiesKeys = properties.keySet();
+            Set<String> ketSet = propertiesMap.keySet();
+            for (String key : ketSet) {
+                Properties properties = propertiesMap.get(key);
+                Set<Object> propertiesKeys = properties.keySet();
 
-                    for (Object objKeys : propertiesKeys) {
-                        String cKey = key.replaceAll("-", "/") + "/" + objKeys.toString();
-                        keySet.add(cKey);
-                        consulService.put(cKey, properties.getProperty(objKeys.toString()));
-                    }
+                for (Object objKeys : propertiesKeys) {
+                    String cKey = key.replaceAll("-", "/") + "/" + objKeys.toString();
+                    keySet.add(cKey);
+                    consulService.put(cKey, properties.getProperty(objKeys.toString()));
                 }
             }
         } catch (Exception e) {
