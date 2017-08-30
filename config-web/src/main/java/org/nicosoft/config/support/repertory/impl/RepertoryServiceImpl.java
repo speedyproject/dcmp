@@ -40,8 +40,10 @@ public class RepertoryServiceImpl implements RepertoryService {
             String user = config.getRepo("username");
             String passwd = config.getRepo("password");
 
-            UsernamePasswordCredentialsProvider upcp = new UsernamePasswordCredentialsProvider(user, passwd);
-            command.setCredentialsProvider(upcp);
+            if(StringUtils.isNotBlank(user) && StringUtils.isNotBlank(passwd)) {
+                UsernamePasswordCredentialsProvider upcp = new UsernamePasswordCredentialsProvider(user, passwd);
+                command.setCredentialsProvider(upcp);
+            }
 
             command.call();
 
