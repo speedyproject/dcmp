@@ -1,6 +1,7 @@
 package org.nicosoft.config.support.repertory;
 
 
+import com.google.gson.Gson;
 import org.apache.commons.io.FileUtils;
 import org.nicosoft.config.support.consul.ConsulService;
 import org.nicosoft.config.support.exception.SysException;
@@ -154,18 +155,23 @@ public class RepertoryHandler {
     public void loadInConsul() throws SysException {
         try {
             Map<String, Properties> propertiesMap = this.loadProperties();
-            keySet = new HashSet<>();
+            this.keySet = new HashSet<>();
 
             Set<String> ketSet = propertiesMap.keySet();
             for (String key : ketSet) {
+
                 Properties properties = propertiesMap.get(key);
                 Set<Object> propertiesKeys = properties.keySet();
+                Set<String> cKeys = new HashSet<>();
 
                 for (Object objKeys : propertiesKeys) {
                     String cKey = key.replaceAll("-", "/") + "/" + objKeys.toString();
-                    keySet.add(cKey);
+                    this.keySet.add(cKey);
                     consulService.put(cKey, properties.getProperty(objKeys.toString()));
+                    cKeys.add(cKey);
                 }
+
+                consulService.put("service-keys/" + key, new Gson().toJson(cKeys));
             }
         } catch (Exception e) {
             throw new SysException(e);
@@ -179,8 +185,8 @@ public class RepertoryHandler {
      */
     public void reLoadInConsul() throws SysException {
         try {
-            if (keySet.size() > 0) {
-                for (String key : keySet) {
+            if (this.keySet.size() > 0) {
+                for (String key : this.keySet) {
                     consulService.delete(key);
                 }
             }
@@ -199,26 +205,28 @@ public class RepertoryHandler {
     public void reLoadInConsul(String serviceId) throws SysException {
         try {
             Properties properties = this.getProperties(serviceId);
+            Set<String> cKeys = new HashSet<>();
             String prefix = serviceId.replaceAll("-", "/") + "/";
             Set<Object> keySet = properties.keySet();
 
-            if (keySet != null && keySet.size() > 0) {
-                for (Object objKey : keySet) {
-                    String ckey = prefix + objKey.toString();
-                    consulService.delete(ckey);
-                }
+            for (Object objKey : keySet) {
+                String ckey = prefix + objKey.toString();
+                consulService.delete(ckey);
+                this.keySet.remove(ckey);
             }
 
             this.initRepo();
             properties = this.getProperties(serviceId);
             keySet = properties.keySet();
 
-            if (keySet != null && keySet.size() > 0) {
-                for (Object objKey : keySet) {
-                    String ckey = prefix + objKey.toString();
-                    consulService.put(ckey, properties.getProperty(objKey.toString()));
-                }
+            for (Object objKey : keySet) {
+                String ckey = prefix + objKey.toString();
+                consulService.put(ckey, properties.getProperty(objKey.toString()));
+                this.keySet.add(ckey);
+                cKeys.add(ckey);
             }
+
+            consulService.put("service-keys/" + serviceId, new Gson().toJson(cKeys));
         } catch (Exception e) {
             throw new SysException(e);
         }
