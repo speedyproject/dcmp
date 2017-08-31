@@ -1,7 +1,8 @@
-package org.nicosoft.config.support.spring;
+package org.nicosoft.config.core;
 
 import org.nicosoft.config.support.consul.ConsulService;
 import org.nicosoft.config.support.consul.impl.ConsulServiceImpl;
+import org.nicosoft.config.support.spring.ConfigurerHandler;
 import org.nicosoft.config.support.spring.impl.ConfigurerHandlerImpl;
 import org.nicosoft.config.support.utils.Logger;
 import org.springframework.beans.factory.config.PropertyPlaceholderConfigurer;
