@@ -30,4 +30,13 @@ public interface ConfigurerBeanHandler {
     void refurbish(String dirPath) throws SysException;
 
 
+    /**
+     * Build properties in dirPath
+     *
+     * @param dirPath
+     * @throws SysException
+     */
+    void buildProperties(String dirPath) throws SysException;
+
+
 }

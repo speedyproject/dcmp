@@ -30,11 +30,11 @@ public class Configurer {
             Yaml yaml = new Yaml();
 
             @SuppressWarnings("unchecked")
-            Map<String,Object> dataMap = yaml.loadAs(new FileInputStream(Configurer.class.getResource(
-                    "/config.yml").getPath()),Map.class);
+            Map<String, Object> dataMap = yaml.loadAs(new FileInputStream(Configurer.class.getResource(
+                    "/config.yml").getPath()), Map.class);
 
             @SuppressWarnings("unchecked")
-            Map<String,Object> configMap = (Map<String,Object>) dataMap.get("config");
+            Map<String, Object> configMap = (Map<String, Object>) dataMap.get("config");
 
             profile = configMap.get("profile").toString();
             token = configMap.get("token").toString();
@@ -50,7 +50,7 @@ public class Configurer {
             serviceId = consulMap.get("serviceId").toString();
             serviceName = consulMap.get("serviceName").toString();
 
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }

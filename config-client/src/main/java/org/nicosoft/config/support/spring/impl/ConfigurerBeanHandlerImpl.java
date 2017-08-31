@@ -1,8 +1,10 @@
 package org.nicosoft.config.support.spring.impl;
 
+import org.nicosoft.config.support.consul.ConsulService;
 import org.nicosoft.config.support.exception.SysException;
 import org.nicosoft.config.support.spring.ConfigurerBeanHandler;
 import org.nicosoft.config.support.utils.Configurer;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Component;
@@ -18,6 +20,9 @@ import java.util.Properties;
  */
 @Component
 public class ConfigurerBeanHandlerImpl implements ConfigurerBeanHandler {
+
+    @Autowired
+    ConsulService consulService;
 
     @Override
     public Properties[] findProperties(String dirPath) throws SysException {
@@ -47,6 +52,17 @@ public class ConfigurerBeanHandlerImpl implements ConfigurerBeanHandler {
 
     @Override
     public void refurbish(String dirPath) throws SysException {
+
+    }
+
+    @Override
+    public void buildProperties(String dirPath) throws SysException {
+
+        String fileName = Configurer.serviceId + "-" + Configurer.profile;
+
+        String ckey = fileName.replaceAll("-","/") + "/";
+
+
 
     }
 
