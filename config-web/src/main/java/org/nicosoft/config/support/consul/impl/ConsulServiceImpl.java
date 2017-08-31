@@ -1,5 +1,6 @@
 package org.nicosoft.config.support.consul.impl;
 
+import com.google.common.base.Optional;
 import com.google.common.net.HostAndPort;
 import com.orbitz.consul.AgentClient;
 import com.orbitz.consul.Consul;
@@ -96,11 +97,15 @@ public class ConsulServiceImpl implements ConsulService {
 
     @Override
     public String get(String key) throws SysException {
-
-        KeyValueClient keyValueClient = buildConsul().keyValueClient();
-
         try {
-            return keyValueClient.getValueAsString(key).get();
+            KeyValueClient keyValueClient = buildConsul().keyValueClient();
+            Optional<String> optional = keyValueClient.getValueAsString(key);
+
+            if("Optional.absent()".equals(optional.toString())){
+                return "";
+            }
+
+            return optional.get();
         } catch (Exception e) {
             throw new SysException(e);
         }

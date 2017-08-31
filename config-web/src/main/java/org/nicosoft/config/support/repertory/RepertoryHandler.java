@@ -164,11 +164,11 @@ public class RepertoryHandler {
                 Set<Object> propertiesKeys = properties.keySet();
                 Set<String> cKeys = new HashSet<>();
 
-                for (Object objKeys : propertiesKeys) {
-                    String cKey = key.replaceAll("-", "/") + "/" + objKeys.toString();
+                for (Object objKey : propertiesKeys) {
+                    String cKey = key.replaceAll("-", "/") + "/" + objKey.toString();
                     this.keySet.add(cKey);
-                    consulService.put(cKey, properties.getProperty(objKeys.toString()));
-                    cKeys.add(cKey);
+                    consulService.put(cKey, properties.getProperty(objKey.toString()));
+                    cKeys.add(objKey.toString());
                 }
 
                 consulService.put("service-keys/" + key, new Gson().toJson(cKeys));
@@ -223,7 +223,7 @@ public class RepertoryHandler {
                 String ckey = prefix + objKey.toString();
                 consulService.put(ckey, properties.getProperty(objKey.toString()));
                 this.keySet.add(ckey);
-                cKeys.add(ckey);
+                cKeys.add(objKey.toString());
             }
 
             consulService.put("service-keys/" + serviceId, new Gson().toJson(cKeys));

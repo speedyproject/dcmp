@@ -10,33 +10,30 @@ import java.util.Properties;
  * @author nico
  * @since 2017.8.31
  */
-public interface ConfigurerBeanHandler {
+public interface ConfigurerHandler {
 
     /**
      * Find all properties in dirPath
      *
-     * @param dirPath
      * @return
      * @throws SysException
      */
-    Properties[] findProperties(String dirPath) throws SysException;
+    Properties[] findProperties() throws SysException;
 
     /**
      * refurbish all properties in dirPath
      *
-     * @param dirPath
      * @throws SysException
      */
-    void refurbish(String dirPath) throws SysException;
+    void refurbish() throws SysException;
 
 
     /**
      * Build properties in dirPath
      *
-     * @param dirPath
      * @throws SysException
      */
-    void buildProperties(String dirPath) throws SysException;
+    void buildProperties() throws SysException;
 
 
 }

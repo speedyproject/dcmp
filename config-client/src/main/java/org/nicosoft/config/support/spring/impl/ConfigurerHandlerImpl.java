@@ -3,10 +3,9 @@ package org.nicosoft.config.support.spring.impl;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import org.apache.commons.io.FileUtils;
-import org.apache.commons.lang3.StringUtils;
 import org.nicosoft.config.support.consul.ConsulService;
 import org.nicosoft.config.support.exception.SysException;
-import org.nicosoft.config.support.spring.ConfigurerBeanHandler;
+import org.nicosoft.config.support.spring.ConfigurerHandler;
 import org.nicosoft.config.support.utils.Configurer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.FileSystemResource;
@@ -16,7 +15,6 @@ import org.springframework.stereotype.Component;
 import java.io.File;
 import java.io.FileWriter;
 import java.util.Properties;
-import java.util.Set;
 
 /**
  * Configurer bean Handler
@@ -25,13 +23,13 @@ import java.util.Set;
  * @since 2017.8.31
  */
 @Component
-public class ConfigurerBeanHandlerImpl implements ConfigurerBeanHandler {
+public class ConfigurerHandlerImpl implements ConfigurerHandler {
 
     @Autowired
     ConsulService consulService;
 
     @Override
-    public Properties[] findProperties(String dirPath) throws SysException {
+    public Properties[] findProperties() throws SysException {
         try {
             Resource resource = new FileSystemResource(Configurer.filePath);
             File[] files = resource.getFile().listFiles();
@@ -63,37 +61,35 @@ public class ConfigurerBeanHandlerImpl implements ConfigurerBeanHandler {
     }
 
     @Override
-    public void refurbish(String dirPath) throws SysException {
-        this.buildProperties(dirPath);
+    public void refurbish() throws SysException {
+        this.buildProperties();
     }
 
     @Override
-    public void buildProperties(String dirPath) throws SysException {
+    public void buildProperties() throws SysException {
         try {
             Properties properties = new Properties();
             String cKey = Configurer.serviceId + "-" + Configurer.profile;
-            Set<String> ckeySet = new Gson().fromJson(consulService.get(cKey), new TypeToken<Set<String>>() {
-            }.getType());
+            String prefix = cKey.replaceAll("-", "/") + "/";
+            String[] ckeySet = new Gson().fromJson(consulService.get("service-keys/" + cKey),
+                    new TypeToken<String[]>() {
+                    }.getType());
 
             for (String key : ckeySet) {
-                String value = consulService.get(key);
+                String value = consulService.get(prefix + key);
                 properties.put(key, value);
             }
 
-            if (StringUtils.isBlank(dirPath)) {
-                throw new SysException("dirPath can't be null");
-            }
-
-            Resource resource = new FileSystemResource(dirPath);
+            Resource resource = new FileSystemResource(Configurer.filePath);
 
             if (resource.getFile().exists()) {
                 FileUtils.deleteDirectory(resource.getFile());
-            } else {
-                resource.getFile().mkdirs();
             }
 
-            dirPath = dirPath + cKey + ".properties";
-            properties.store(new FileWriter(dirPath), "Service config");
+            resource.getFile().mkdirs();
+
+            String filePath = Configurer.filePath + cKey + ".properties";
+            properties.store(new FileWriter(filePath), "Service config build for DCMP");
         } catch (Exception e) {
             throw new SysException(e);
         }

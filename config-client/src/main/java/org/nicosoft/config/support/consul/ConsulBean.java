@@ -1,5 +1,6 @@
 package org.nicosoft.config.support.consul;
 
+import org.nicosoft.config.support.spring.ConfigurerHandler;
 import org.nicosoft.config.support.utils.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -13,6 +14,8 @@ public class ConsulBean {
 
     @Autowired
     ConsulService consulService;
+    @Autowired
+    ConfigurerHandler configurerHandler;
 
     /**
      * Spring bean init method
@@ -20,6 +23,8 @@ public class ConsulBean {
     public void init() {
         consulService.register();
         Logger.info("Service register success.");
+        configurerHandler.buildProperties();
+        Logger.info("Build properties file success");
     }
 
     /**
