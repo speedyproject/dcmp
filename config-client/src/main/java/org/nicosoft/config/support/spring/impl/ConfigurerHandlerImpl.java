@@ -4,10 +4,10 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import org.apache.commons.io.FileUtils;
 import org.nicosoft.config.support.consul.ConsulService;
+import org.nicosoft.config.support.consul.impl.ConsulServiceImpl;
 import org.nicosoft.config.support.exception.SysException;
 import org.nicosoft.config.support.spring.ConfigurerHandler;
 import org.nicosoft.config.support.utils.Configurer;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Component;
@@ -25,21 +25,17 @@ import java.util.Properties;
 @Component
 public class ConfigurerHandlerImpl implements ConfigurerHandler {
 
-    @Autowired
-    ConsulService consulService;
-
     @Override
-    public Properties[] findProperties() throws SysException {
+    public Resource[] findProperties() throws SysException {
         try {
             Resource resource = new FileSystemResource(Configurer.filePath);
             File[] files = resource.getFile().listFiles();
-            Properties[] propertiesArray = new Properties[]{};
-            Properties properties;
 
             if (files == null || files.length == 0) {
                 return null;
             }
 
+            Resource[] resourceArray = new Resource[files.length];
             String suffix = "properties";
 
             for (int i = 0; i < files.length; i++) {
@@ -49,12 +45,9 @@ public class ConfigurerHandlerImpl implements ConfigurerHandler {
                     continue;
                 }
 
-                resource = new FileSystemResource(files[i].getPath());
-                properties = new Properties();
-                properties.load(resource.getInputStream());
-                propertiesArray[i] = properties;
+                resourceArray[i] = new FileSystemResource(files[i].getPath());
             }
-            return propertiesArray;
+            return resourceArray;
         } catch (Exception e) {
             throw new SysException(e);
         }
@@ -68,6 +61,7 @@ public class ConfigurerHandlerImpl implements ConfigurerHandler {
     @Override
     public void buildProperties() throws SysException {
         try {
+            ConsulService consulService = new ConsulServiceImpl();
             Properties properties = new Properties();
             String cKey = Configurer.serviceId + "-" + Configurer.profile;
             String prefix = cKey.replaceAll("-", "/") + "/";

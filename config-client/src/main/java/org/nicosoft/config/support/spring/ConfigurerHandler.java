@@ -1,8 +1,8 @@
 package org.nicosoft.config.support.spring;
 
 import org.nicosoft.config.support.exception.SysException;
+import org.springframework.core.io.Resource;
 
-import java.util.Properties;
 
 /**
  * Configurer bean Handler
@@ -18,7 +18,7 @@ public interface ConfigurerHandler {
      * @return
      * @throws SysException
      */
-    Properties[] findProperties() throws SysException;
+    Resource[] findProperties() throws SysException;
 
     /**
      * refurbish all properties in dirPath
@@ -34,6 +34,5 @@ public interface ConfigurerHandler {
      * @throws SysException
      */
     void buildProperties() throws SysException;
-
 
 }
