@@ -8,4 +8,4 @@ config:
     check: http://localhost:8080/health
     serviceId: config-client
     serviceName: config-client
-  filePath: /Users/nico/Documents/develop/workspace-idea/dcmp/config-client/src/main/resources/repertory
+  filePath: /home/travis/build/speedyproject/dcmp/config-client/repertory
