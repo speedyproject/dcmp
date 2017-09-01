@@ -1,0 +1,11 @@
+config:
+  profile: dev
+  token: er34xfwefwerqxrx2
+  consul:
+    host: localhost:8500
+    ttl: 3
+    port: 8080
+    check: http://localhost:8080/health
+    serviceId: config-client
+    serviceName: config-client
+  filePath: /Users/nico/Documents/develop/workspace-idea/dcmp/config-client/src/main/resources/repertory
