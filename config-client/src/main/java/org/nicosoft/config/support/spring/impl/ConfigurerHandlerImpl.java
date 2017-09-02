@@ -3,11 +3,14 @@ package org.nicosoft.config.support.spring.impl;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import org.apache.commons.io.FileUtils;
+import org.nicosoft.config.core.ConfigurerBean;
 import org.nicosoft.config.support.consul.ConsulService;
 import org.nicosoft.config.support.consul.impl.ConsulServiceImpl;
 import org.nicosoft.config.support.exception.SysException;
 import org.nicosoft.config.support.spring.ConfigurerHandler;
+import org.nicosoft.config.support.spring.SpringBeanFactory;
 import org.nicosoft.config.support.utils.Configurer;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Component;
@@ -24,6 +27,9 @@ import java.util.Properties;
  */
 @Component
 public class ConfigurerHandlerImpl implements ConfigurerHandler {
+
+    @Autowired
+    SpringBeanFactory springBeanFactory;
 
     @Override
     public Resource[] findProperties() throws SysException {
@@ -55,7 +61,11 @@ public class ConfigurerHandlerImpl implements ConfigurerHandler {
 
     @Override
     public void refurbish() throws SysException {
-        this.buildProperties();
+        try{
+            springBeanFactory.reloadBean(ConfigurerBean.class, "load", "destroy");
+        } catch (Exception e) {
+            throw new SysException(e);
+        }
     }
 
     @Override
