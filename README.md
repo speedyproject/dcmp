@@ -20,38 +20,6 @@
 
 ## 如何使用
 
-&#12288;&#12288;服务端修改```config.yml```文件，配置如下: <br/>
-```yaml
-  config:
-  profile: dev
-  token: er34xfwefwerqxrx2                  # API交互token
-  consul:
-    host: localhost:8500                    # consul服务器地址
-    ttl: 3                                  # ttl
-    port: 8080                              # 本地服务开放端口
-    check: http://localhost:8080/health     # 心跳检测地址
-    serviceId: config-web                   # 注册服务ID
-    serviceName: config-web                 # 注册服务名称
-  repo:
-    repoDir: /Users/nico/Documents/develop/workspace-idea/dcmp/repertory  # Git本地路径
-    host: https://github.com/gksqls/config-repo                           # Git仓库地址
-    username:                                                             # Git用户名
-    password:                                                             # Git密码
-```
-&#12288;&#12288;客户端修改```config.yml```文件，配置如下: <br/>
-```yaml
-config:
-  profile: dev
-  token: er34xfwefwerqxrx2                   # API交互token
-  consul:
-    host: localhost:8500                     # consul服务器地址
-    ttl: 3                                   # ttl
-    port: 8080                               # 本地服务开放端口
-    check: http://localhost:8080/health      # 心跳检测地址
-    serviceId: config-client                 # 注册服务ID
-    serviceName: config-client               # 注册服务名称
-  filePath: /home/travis/build/speedyproject/dcmp/config-client/repertory # 配置文件路径
-```
 &#12288;&#12288;Spring 项目使用方法: <br/>
 ```java
     @Bean(initMethod = "load", destroyMethod = "destroy")
