@@ -38,7 +38,7 @@
     username:                                                             # Git用户名
     password:                                                             # Git密码
 ```
-&#12288;&#12288;服务端修改```config.yml```文件，配置如下: <br/>
+&#12288;&#12288;客户端修改```config.yml```文件，配置如下: <br/>
 ```yaml
 config:
   profile: dev
