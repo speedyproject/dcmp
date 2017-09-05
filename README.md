@@ -20,7 +20,7 @@
 
 ## 如何使用
 
-&#12288;&#12288;Spring 项目使用方法: <br/>
+&#12288;&#12288;Spring 项目使用方法，引入```config-client```包后: <br/>
 ```java
     @Bean(initMethod = "load", destroyMethod = "destroy")
     public ConfigurerBean configurerBean() {
@@ -33,7 +33,7 @@
         return new SpringBeanFactory();
     }
 ```
-配置好两个Bean以后，在类成员上使用Spring原生```@Value("${key}")```取值
+配置好两个Bean，在类成员上使用Spring原生```@Value("${key}")```取值
 
 
 文档持续更新中。。。。
