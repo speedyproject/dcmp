@@ -15,8 +15,8 @@
 
 ## 组件
 
-*	config-web 服务端
-*	config-client 客户端
+*	config-web      服务端
+*	config-client   客户端
 
 ## 如何使用
 
