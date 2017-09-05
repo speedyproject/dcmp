@@ -16,4 +16,4 @@ jdk:
 install:
   - pwd
   - cd config-web/ && mvn clean package -DskipTests=true -Dmaven.javadoc.skip=true -B -V
-  - cd config-client/ && mvn clean package -DskipTests=true -Dmaven.javadoc.skip=true -B -V
+  - cd.. && cd config-client/ && mvn clean package -DskipTests=true -Dmaven.javadoc.skip=true -B -V
