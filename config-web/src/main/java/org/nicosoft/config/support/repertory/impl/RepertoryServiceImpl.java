@@ -1,10 +1,7 @@
 package org.nicosoft.config.support.repertory.impl;
 
-//import org.apache.commons.lang3.StringUtils;
-import org.eclipse.jgit.api.CloneCommand;
-import org.eclipse.jgit.api.Git;
-import org.eclipse.jgit.api.PullCommand;
-import org.eclipse.jgit.api.Status;
+import org.apache.commons.lang3.StringUtils;
+import org.eclipse.jgit.api.*;
 import org.eclipse.jgit.internal.storage.file.FileRepository;
 import org.eclipse.jgit.lib.Repository;
 import org.eclipse.jgit.transport.UsernamePasswordCredentialsProvider;
@@ -15,7 +12,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.io.File;
-import java.util.Set;
 
 /**
  * Git repertory service
@@ -38,13 +34,13 @@ public class RepertoryServiceImpl implements RepertoryService {
             command.setURI(config.getRepo("host"));
             command.setDirectory(repoDir);
 
-            //String user = config.getRepo("username");
-            //String passwd = config.getRepo("password");
+            String user = config.getRepo("username");
+            String passwd = config.getRepo("password");
 
-            //if(StringUtils.isNotBlank(user) && StringUtils.isNotBlank(passwd)) {
-                //UsernamePasswordCredentialsProvider upcp = new UsernamePasswordCredentialsProvider(user, passwd);
-                //command.setCredentialsProvider(upcp);
-            //}
+            if (StringUtils.isNotBlank(user) && StringUtils.isNotBlank(passwd)) {
+                UsernamePasswordCredentialsProvider upcp = new UsernamePasswordCredentialsProvider(user, passwd);
+                command.setCredentialsProvider(upcp);
+            }
 
             command.call();
 
@@ -54,30 +50,26 @@ public class RepertoryServiceImpl implements RepertoryService {
     }
 
     @Override
-    public void checkRepo(File repoDir) throws SysException {
-
+    public PullResult pullRepo(File repoDir) throws SysException {
         try {
-
-            File gitDir = new File(repoDir.getAbsolutePath() + "/.git");
-
-            if (!gitDir.exists()) {
-                throw new SysException(gitDir.getAbsolutePath() + " not exists.");
-            }
-
-            Repository repository = new FileRepository(repoDir.getAbsolutePath());
+            Repository repository = new FileRepository(repoDir.getAbsolutePath() + "/.git");
             Git git = new Git(repository);
-            Status status = git.status().call();
-            Set<String> statusSet = status.getChanged();
 
-            if (statusSet != null && statusSet.size() > 0) {
-                git = Git.open(repoDir);
-                PullCommand pull = git.pull();
-                pull.call();
+            PullCommand pull = git.pull();
+
+            String user = config.getRepo("username");
+            String passwd = config.getRepo("password");
+
+            if (StringUtils.isNotBlank(user) && StringUtils.isNotBlank(passwd)) {
+                UsernamePasswordCredentialsProvider upcp = new UsernamePasswordCredentialsProvider(user, passwd);
+                pull.setCredentialsProvider(upcp);
             }
 
+            PullResult result = pull.call();
+
+            return result;
         } catch (Exception e) {
             throw new SysException(e);
         }
     }
-
 }

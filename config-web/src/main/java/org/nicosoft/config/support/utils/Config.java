@@ -48,6 +48,9 @@ public class Config {
      * @return
      */
     public String getConsul(String key) {
+        if (consulMap.get(key) == null) {
+            return null;
+        }
         return this.consulMap.get(key).toString();
     }
 
@@ -58,6 +61,9 @@ public class Config {
      * @return
      */
     public String getRepo(String key) {
+        if (repoMap.get(key) == null) {
+            return null;
+        }
         return this.repoMap.get(key).toString();
     }
 

@@ -1,8 +1,11 @@
 package org.nicosoft.config.support.repertory;
 
+import org.eclipse.jgit.api.PullResult;
+import org.eclipse.jgit.api.Status;
 import org.nicosoft.config.support.exception.SysException;
 
 import java.io.File;
+import java.util.Set;
 
 /**
  * Git repertory service
@@ -21,13 +24,13 @@ public interface RepertoryService {
      */
     void cloneRepo(File repoDir) throws SysException;
 
-
     /**
-     * Check git repertory status.
+     * Get git repertory status.
      *
      * @param repoDir
+     * @return
      * @throws SysException
      */
-    void checkRepo(File repoDir) throws SysException;
+    PullResult pullRepo(File repoDir) throws SysException;
 
 }
