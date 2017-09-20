@@ -185,6 +185,8 @@ public class RepertoryHandler {
      */
     public void reLoadInConsul() throws SysException {
         try {
+            repertoryService.pullRepo(buildRepoDir().getFile());
+
             if (this.keySet.size() > 0) {
                 for (String key : this.keySet) {
                     consulService.delete(key);
@@ -204,6 +206,7 @@ public class RepertoryHandler {
      */
     public void reLoadInConsul(String serviceId) throws SysException {
         try {
+            repertoryService.pullRepo(buildRepoDir().getFile());
             Properties properties = this.getProperties(serviceId);
             Set<String> cKeys = new HashSet<>();
             String prefix = serviceId.replaceAll("-", "/") + "/";
