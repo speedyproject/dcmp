@@ -1,11 +1,9 @@
 package org.nicosoft.config.support.repertory;
 
 import org.eclipse.jgit.api.PullResult;
-import org.eclipse.jgit.api.Status;
 import org.nicosoft.config.support.exception.SysException;
 
 import java.io.File;
-import java.util.Set;
 
 /**
  * Git repertory service
