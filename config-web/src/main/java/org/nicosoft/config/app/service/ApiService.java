@@ -24,7 +24,7 @@ public interface ApiService {
     /**
      * Find data by serviceId
      *
-     * @param ApiModel apiModel
+     * @param apiModel
      * @return
      * @throws SysException
      */
