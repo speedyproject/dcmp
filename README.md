@@ -28,11 +28,6 @@
         ConfigurerBean configurerBean = new ConfigurerBean();
         return configurerBean;
     }
-
-    @Bean
-    public SpringBeanFactory springBeanFactory() {
-        return new SpringBeanFactory();
-    }
 ```
 配置好两个Bean，在类成员上使用Spring原生```@Value("${key}")```取值
 
