@@ -3,8 +3,9 @@
 [![Build Status](https://travis-ci.org/speedyproject/dcmp.svg?branch=master)](https://travis-ci.org/speedyproject/dcmp)
 [![Dependency Status](https://www.versioneye.com/user/projects/59a8c4c00fb24f003d09cf9b/badge.svg?style=flat-square)](https://www.versioneye.com/user/projects/59a8c4c00fb24f003d09cf9b)
 [![codebeat badge](https://codebeat.co/badges/ae711829-ac75-4bfc-85b7-64e76e37d10a)](https://codebeat.co/projects/github-com-speedyproject-dcmp-master)
-[![Maven central](https://maven-badges.herokuapp.com/maven-central/org.nicosoft.config/config-client/badge.svg)](https://maven-badges.herokuapp.com/maven-central/org.nicosoft.config/config-client)
 [![AUR](https://img.shields.io/badge/license-GPL-orange.svg)](https://www.gnu.org/licenses/gpl-3.0.html)
+[![Maven central](https://maven-badges.herokuapp.com/maven-central/org.nicosoft.config/config-client/badge.svg)](https://maven-badges.herokuapp.com/maven-central/org.nicosoft.config/config-client)
+
 
 # DCMP
 
