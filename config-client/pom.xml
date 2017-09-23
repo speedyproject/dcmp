@@ -10,6 +10,12 @@
 
     <name>config-client</name>
 
+    <parent>
+        <groupId>org.sonatype.oss</groupId>
+        <artifactId>oss-parent</artifactId>
+        <version>7</version>
+    </parent>
+
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
@@ -93,7 +99,28 @@
 
     </dependencies>
 
+    <licenses>
+        <license>
+            <name>GNU General Public License v3.0</name>
+            <url>https://www.gnu.org/licenses/gpl-3.0.html</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
 
+    <scm>
+        <tag>master</tag>
+        <url>git@github.com:speedyproject/dcmp.git</url>
+        <connection>scm:git:git@github.com:speedyproject/dcmp.git</connection>
+        <developerConnection>scm:git:git@github.com:speedyproject/dcmp.git</developerConnection>
+    </scm>
+
+    <developers>
+        <developer>
+            <name>Nico W.J</name>
+            <email>nico.jiang@outlook.com</email>
+            <organization>NicoSoft</organization>
+        </developer>
+    </developers>
 
     <build>
         <plugins>
