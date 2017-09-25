@@ -36,7 +36,7 @@
         serviceName: config-client                      # 服务器名
     filePath: /home/travis/build/speedyproject/dcmp/config-client/repertory # 配置文件临时路径
 ```
-创建好项目后，y运行时在类成员上使用Spring原生```@Value("${key}")```取值
+创建好项目后，运行时在类成员上使用Spring原生```@Value("${key}")```取值
 
 文档持续更新中。。。。
 <br/>
