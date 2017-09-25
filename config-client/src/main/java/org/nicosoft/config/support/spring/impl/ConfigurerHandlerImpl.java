@@ -3,7 +3,7 @@ package org.nicosoft.config.support.spring.impl;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import org.apache.commons.io.FileUtils;
-import org.nicosoft.config.core.ConfigurerBean;
+import org.nicosoft.config.bean.ConfigurerBean;
 import org.nicosoft.config.support.consul.ConsulService;
 import org.nicosoft.config.support.consul.impl.ConsulServiceImpl;
 import org.nicosoft.config.support.exception.SysException;

@@ -1,4 +1,4 @@
-package org.nicosoft.config.core;
+package org.nicosoft.config.bean;
 
 import org.nicosoft.config.support.consul.ConsulService;
 import org.nicosoft.config.support.consul.impl.ConsulServiceImpl;
