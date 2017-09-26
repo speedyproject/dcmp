@@ -22,19 +22,27 @@
 
 ## 如何使用
 
+Maven 引入
+
+```xml
+ <dependency>
+     <groupId>org.nicosoft.config</groupId>
+     <artifactId>config-client</artifactId>
+     <version>1.0.1</version>
+ </dependency>
+```
 &#12288;&#12288;Spring 项目使用方法，引入```config-client```包后在resource目录创建```config.yml```: <br/>
 ```yaml
-    config:
+ config:
         profile: dev                                    # profile                                            
-    token: er34xfwefwerqxrx2                            # 交换的Token可有可无
-    consul:
-        host: localhost:8500                            # consul 服务器地址
-        ttl: 3                                          # 刷新时间
-        port: 8080                                      # 本地开放的端口
-        check: http://localhost:8080/health             # 心跳检测地址
-        serviceId: config-client                        # 服务ID
-        serviceName: config-client                      # 服务器名
-    filePath: /home/travis/build/speedyproject/dcmp/config-client/repertory # 配置文件临时路径
+ token: er34xfwefwerqxrx2                            # 交换的Token可有可无
+ consul:
+   host: localhost:8500                            # consul 服务器地址
+   port: 8080                                      # 本地开放的端口
+   check: http://localhost:8080/health             # 心跳检测地址
+   serviceId: config-client                        # 服务ID
+   serviceName: config-client                      # 服务器名
+ filePath: /home/travis/build/speedyproject/dcmp/config-client/repertory # 配置文件临时路径
 ```
 创建好项目后，运行时在类成员上使用Spring原生```@Value("${key}")```取值
 
