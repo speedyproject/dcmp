@@ -31,7 +31,7 @@ Maven 引入
      <version>1.0.1</version>
  </dependency>
 ```
-&#12288;&#12288;Spring 项目使用方法，引入```config-client```包后在resource目录创建```config.yml```: <br/>
+Spring 项目使用方法，引入```config-client```包后在resource目录创建```config.yml```: <br/>
 ```yaml
  config:
         profile: dev                                    # profile                                            
