@@ -52,5 +52,3 @@ Spring 项目使用方法，引入```config-client```包后在resource目录创�
 ## 联系与建议
 
 *	E-mail: gksqlsdy@gmail.com
-
-
